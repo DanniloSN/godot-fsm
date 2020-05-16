@@ -1,27 +1,64 @@
 extends KinematicBody2D
 
-onready var sm = $StatesMachine
+const GRAVITY = 200
+const ACCELERATION = 15
+const DECELERATION = 30
+const WALK_VELOCITY = 200
+const RUN_VELOCITY = 300
+const JUMP_FORCE = 200
 
 var direction = Vector2()
 var velocity = Vector2()
+var movement = Vector2()
+
+var isRunning = false
+var isOnFloor = true
 
 func _ready():
-	sm.setState("Fall")
+	pass
 
 func _process(delta):
-	if(sm.state):
-		sm.state._update(delta)
+	if !is_on_floor():
+		isOnFloor = false
+		movement.y += GRAVITY * delta
+	else:
+		isOnFloor = true
 
-	move_and_slide(
-		Vector2(
-			direction.x * velocity.x,
-			direction.y * velocity.y
-		)
+	var maxVelocity = 0
+	if isRunning:
+		maxVelocity = RUN_VELOCITY
+	else:
+		maxVelocity = WALK_VELOCITY
+
+	var accel = false
+	if direction.x != 0:
+		accel = ACCELERATION
+	else:
+		accel = DECELERATION
+
+	velocity = velocity.linear_interpolate(
+		direction * maxVelocity,
+		accel * delta
 	)
 
-func _input(event):
-	if(sm.state):
-		sm.state._handle_input(event)
+	movement.x = velocity.x
+	move_and_slide(movement, Vector2.UP)
 
-func is_on_ground():
-	return $RayCastLeft.is_colliding() or $RayCastRight.is_colliding()
+func _input(event):
+	if Input.is_action_pressed("move_left"):
+		direction.x = -1
+	elif Input.is_action_pressed("move_right"):
+		direction.x = 1
+	else:
+		direction.x = 0
+
+	if Input.is_action_pressed("run"):
+		isRunning = true
+	else:
+		isRunning = false
+
+	if isOnFloor && Input.is_action_pressed("jump"):
+		jump()
+
+func jump():
+	movement.y = -JUMP_FORCE
