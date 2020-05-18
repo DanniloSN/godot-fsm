@@ -1,5 +1,6 @@
 extends Node
 
+# The character's states have to be specified here
 onready var STATES = {
 	"Idle" : $Idle,
 	"Walk" : $Walk,

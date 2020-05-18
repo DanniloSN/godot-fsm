@@ -21,16 +21,6 @@ texture = ExtResource( 8 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="RayCastLeft" type="RayCast2D" parent="."]
-position = Vector2( -28, 0 )
-enabled = true
-cast_to = Vector2( 0, 35 )
-
-[node name="RayCastRight" type="RayCast2D" parent="."]
-position = Vector2( 28, 0 )
-enabled = true
-cast_to = Vector2( 0, 35 )
-
 [node name="StatesMachine" type="Node" parent="."]
 script = ExtResource( 3 )
 

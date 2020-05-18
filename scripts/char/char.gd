@@ -52,12 +52,12 @@ func _input(event):
 	else:
 		direction.x = 0
 
-	if Input.is_action_pressed("run"):
+	if isOnFloor and Input.is_action_pressed("run"):
 		isRunning = true
 	else:
 		isRunning = false
 
-	if isOnFloor && Input.is_action_pressed("jump"):
+	if isOnFloor && Input.is_action_just_pressed("jump"):
 		jump()
 
 func jump():

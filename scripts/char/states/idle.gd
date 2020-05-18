@@ -7,14 +7,19 @@ var runPressed = false
 
 func _enter(parent):
 	character = parent
+
+	# Set movement variables to zero
 	character.direction = Vector2()
-	character.velocity = Vector2()
+	character.movement = Vector2()
 
 func _update(delta):
-	# If isn't on ground setState Falling
-	if !character.is_on_ground():
+	# If isn't on floor set state to Fall
+	if !character.is_on_floor():
 		sm.setState("Fall")
 
+	# If the direction is zero, then set
+	# state to Walk or Run depeding if is
+	# pressing the run button.
 	if character.direction != Vector2():
 		if runPressed:
 			sm.setState("Run")
@@ -22,17 +27,20 @@ func _update(delta):
 			sm.setState("Walk")
 
 func _handle_input(event):
-	# If run pressed, set state to Run instead Walk
+	# While pressing run, runPressed will be
+	# true, that will decide if is going to
+	# run or walk
 	if Input.is_action_pressed("run"):
 		runPressed = true
 	else:
 		runPressed = false
 
-	# Jump
+	# Set state to Jump
 	if Input.is_action_pressed("jump"):
 		sm.setState("Jump")
 
-	# If press something change into his State
+	# If press move_left or move_right, 
+	# change the direction
 	if Input.is_action_just_pressed("move_left"):
 		character.direction.x = -1
 	elif Input.is_action_just_pressed("move_right"):

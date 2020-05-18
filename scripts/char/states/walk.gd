@@ -4,19 +4,30 @@ onready var character
 onready var sm = get_parent()
 
 const WALK_VELOCITY = 200
+const WALK_ACCELERATION = 15
+
+var velocity = Vector2()
 
 func _enter(parent):
 	character = parent
-	character.velocity.x = WALK_VELOCITY
 
 func _update(delta):
-	# If isn't on ground setState Falling
-	if !character.is_on_ground():
+	# If isn't on floor set state to Fall
+	if !character.is_on_floor():
 		sm.setState("Fall")
 
-	# If have no direction, set idle
+	# If have no direction, set state to Idle
 	if(character.direction == Vector2()):
 		sm.setState("Idle")
+
+	# Smooth acceleration to walk
+	velocity = velocity.linear_interpolate(
+		character.direction * WALK_VELOCITY,
+		WALK_ACCELERATION * delta
+	)
+
+	# Set the movement as walk velocity
+	character.movement.x = velocity.x
 
 func _handle_input(event):
 	# Can change directions
