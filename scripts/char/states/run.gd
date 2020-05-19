@@ -10,9 +10,10 @@ var velocity = Vector2()
 
 func _enter(parent):
 	character = parent
+	character.playAnimation("Run")
 
 func _update(delta):
-	# If isn't on floor set state to Fall
+	# Check the floor
 	if !character.is_on_floor():
 		sm.setState("Fall")
 
@@ -47,4 +48,4 @@ func _handle_input(event):
 		sm.setState("Walk")
 
 func _exit():
-	pass
+	velocity = Vector2()

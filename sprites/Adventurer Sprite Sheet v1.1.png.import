@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/manBlue_stand.png-e3cc06fb5ce6581b939de91402b8a81e.stex"
+path="res://.import/Adventurer Sprite Sheet v1.1.png-b439c16f32bdafbfac682be823ea4ef4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/characters/manBlue/manBlue_stand.png"
-dest_files=[ "res://.import/manBlue_stand.png-e3cc06fb5ce6581b939de91402b8a81e.stex" ]
+source_file="res://sprites/Adventurer Sprite Sheet v1.1.png"
+dest_files=[ "res://.import/Adventurer Sprite Sheet v1.1.png-b439c16f32bdafbfac682be823ea4ef4.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

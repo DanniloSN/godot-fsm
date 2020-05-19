@@ -9,14 +9,13 @@ const AIR_HORIZONTAL_ACCELERATION = 15
 
 var velocity = Vector2()
 
-var inputRun = false
+var runPressed = false
 
 func _enter(parent):
 	character = parent
-	character.direction.y = 1
+	character.playAnimation("Fall")
 
-	if character.movement.x == 0:
-		velocity.x = character.movement.x
+	character.direction.y = 1
 
 func _update(delta):
 	# If isn't on floor set state to Fall
@@ -33,21 +32,21 @@ func _update(delta):
 		# Set the movement as walk velocity
 		character.movement.x = velocity.x
 
+	# Touched the floor
 	else:
-		# Check conditions to change state
-		if character.direction.x == 0:
-			sm.setState("Idle")
-		else:
-			if inputRun:
+		if character.direction.x != 0:
+			if runPressed:
 				sm.setState("Run")
 			else:
 				sm.setState("Walk")
+		else:
+			sm.setState("Idle")
 
 func _handle_input(event):
 	if Input.is_action_pressed("run"):
-		inputRun = true
+		runPressed = true
 	else:
-		inputRun = false
+		runPressed = false
 
 	if Input.is_action_pressed("move_left"):
 		character.direction.x = -1

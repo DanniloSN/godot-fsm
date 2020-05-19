@@ -7,13 +7,14 @@ var runPressed = false
 
 func _enter(parent):
 	character = parent
+	character.playAnimation("Idle")
 
 	# Set movement variables to zero
 	character.direction = Vector2()
 	character.movement = Vector2()
 
 func _update(delta):
-	# If isn't on floor set state to Fall
+	# Check the floor
 	if !character.is_on_floor():
 		sm.setState("Fall")
 
@@ -41,9 +42,9 @@ func _handle_input(event):
 
 	# If press move_left or move_right, 
 	# change the direction
-	if Input.is_action_just_pressed("move_left"):
+	if Input.is_action_pressed("move_left"):
 		character.direction.x = -1
-	elif Input.is_action_just_pressed("move_right"):
+	elif Input.is_action_pressed("move_right"):
 		character.direction.x = 1
 
 func _exit():

@@ -5,8 +5,8 @@ onready var STATES = {
 	"Idle" : $Idle,
 	"Walk" : $Walk,
 	"Run" : $Run,
+	"Jump" : $Jump,
 	"Fall" : $Fall,
-	"Jump" : $Jump
 }
 
 var previousState
