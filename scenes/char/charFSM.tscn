@@ -120,6 +120,20 @@ anims/Jump = SubResource( 4 )
 anims/Run = SubResource( 5 )
 anims/Walk = SubResource( 6 )
 
+[node name="Debug" type="Label" parent="."]
+margin_left = -79.5
+margin_top = -29.6667
+margin_right = 79.5
+margin_bottom = -15.6667
+grow_horizontal = 2
+grow_vertical = 0
+text = "Velocity(123123,123123)"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="StatesMachine" type="Node" parent="."]
 script = ExtResource( 3 )
 

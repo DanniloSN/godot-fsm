@@ -6,16 +6,17 @@ onready var sm = get_parent()
 const JUMP_FORCE = 200
 const GRAVITY = 200
 const AIR_HORIZONTAL_VELOCITY = 200
-const AIR_HORIZONTAL_ACCELERATION = 15
 
-var velocity = Vector2()
+var velocity = 0
 
 func _enter(parent):
 	character = parent
 	character.playAnimation("Jump")
 
+	# Define jump horizontal velocity
+	velocity = character.movement.x if abs(character.movement.x) > AIR_HORIZONTAL_VELOCITY else AIR_HORIZONTAL_VELOCITY
+
 	# Set the movement and direction
-	character.direction.y = -1
 	character.movement.y = -JUMP_FORCE
 
 func _update(delta):
@@ -24,14 +25,8 @@ func _update(delta):
 		# Apply gravity
 		character.movement.y += GRAVITY * delta
 
-	# Smooth acceleration to move on air
-	velocity = velocity.linear_interpolate(
-		character.direction * AIR_HORIZONTAL_VELOCITY,
-		AIR_HORIZONTAL_ACCELERATION * delta
-	)
-
 	# Set the movement as walk velocity
-	character.movement.x = velocity.x
+	character.movement.x = character.direction.x * abs(velocity)
 
 	# If is falling setState to Fall
 	if character.movement.y > 0:
@@ -47,4 +42,4 @@ func _handle_input(event):
 		character.direction.x = 0
 
 func _exit():
-	velocity = Vector2()
+	velocity = 0

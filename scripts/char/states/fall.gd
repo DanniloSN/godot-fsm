@@ -5,17 +5,16 @@ onready var sm = get_parent()
 
 const GRAVITY = 200
 const AIR_HORIZONTAL_VELOCITY = 200
-const AIR_HORIZONTAL_ACCELERATION = 15
 
-var velocity = Vector2()
-
+var velocity = 0
 var runPressed = false
 
 func _enter(parent):
 	character = parent
 	character.playAnimation("Fall")
 
-	character.direction.y = 1
+	# Define fall horizontal velocity
+	velocity = character.movement.x if abs(character.movement.x) > AIR_HORIZONTAL_VELOCITY else AIR_HORIZONTAL_VELOCITY
 
 func _update(delta):
 	# If isn't on floor set state to Fall
@@ -23,14 +22,8 @@ func _update(delta):
 		# Apply gravity
 		character.movement.y += GRAVITY * delta
 
-		# Smooth acceleration to move on air
-		velocity = velocity.linear_interpolate(
-			character.direction * AIR_HORIZONTAL_VELOCITY,
-			AIR_HORIZONTAL_ACCELERATION * delta
-		)
-
 		# Set the movement as walk velocity
-		character.movement.x = velocity.x
+		character.movement.x = character.direction.x * abs(velocity)
 
 	# Touched the floor
 	else:
@@ -56,4 +49,5 @@ func _handle_input(event):
 		character.direction.x = 0
 
 func _exit():
-	character.direction.y = 0
+	velocity = 0
+	character.movement.y = 0

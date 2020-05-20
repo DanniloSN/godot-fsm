@@ -4,7 +4,7 @@ onready var character
 onready var sm = get_parent()
 
 const RUN_VELOCITY = 300
-const RUN_ACCELERATION = 30
+const RUN_ACCELERATION = 15
 
 var velocity = Vector2()
 

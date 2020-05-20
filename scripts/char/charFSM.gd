@@ -26,6 +26,9 @@ func _process(delta):
 	# Move character
 	move_and_slide(movement, Vector2.UP)
 
+	# Just for Debug
+	$Debug.text = str(movement)
+
 func _input(event):
 	# Use input from actual state
 	if(sm.state):

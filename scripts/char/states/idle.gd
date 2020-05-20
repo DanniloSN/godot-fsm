@@ -26,6 +26,8 @@ func _update(delta):
 			sm.setState("Run")
 		else:
 			sm.setState("Walk")
+	else:
+		character.movement = Vector2()
 
 func _handle_input(event):
 	# While pressing run, runPressed will be
@@ -46,6 +48,8 @@ func _handle_input(event):
 		character.direction.x = -1
 	elif Input.is_action_pressed("move_right"):
 		character.direction.x = 1
+	else:
+		character.direction.x = 0
 
 func _exit():
 	pass
