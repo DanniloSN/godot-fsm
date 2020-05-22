@@ -13,6 +13,9 @@ func _enter(parent):
 	character = parent
 	character.playAnimation("Fall")
 
+	# Set the character direction
+	character.direction.y = 1
+
 	# Define fall horizontal velocity
 	velocity = character.movement.x if abs(character.movement.x) > AIR_HORIZONTAL_VELOCITY else AIR_HORIZONTAL_VELOCITY
 
@@ -51,3 +54,4 @@ func _handle_input(event):
 func _exit():
 	velocity = 0
 	character.movement.y = 0
+	character.direction.y = 0

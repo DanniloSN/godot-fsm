@@ -18,6 +18,7 @@ func _enter(parent):
 
 	# Set the movement and direction
 	character.movement.y = -JUMP_FORCE
+	character.direction.y = -1
 
 func _update(delta):
 	# If touched the floor setState to Idle

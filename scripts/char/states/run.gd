@@ -47,5 +47,9 @@ func _handle_input(event):
 	if Input.is_action_just_released("run"):
 		sm.setState("Walk")
 
+	# Set state to Attack
+	if Input.is_action_pressed("attack"):
+		sm.setState("Attack")
+
 func _exit():
 	velocity = Vector2()

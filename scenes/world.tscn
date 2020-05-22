@@ -22,6 +22,7 @@ position = Vector2( 0, 768 )
 shape = SubResource( 1 )
 
 [node name="Chars" type="Node2D" parent="."]
+position = Vector2( 0, 78 )
 
 [node name="CharFSM" parent="Chars" instance=ExtResource( 2 )]
 position = Vector2( 683, 200 )

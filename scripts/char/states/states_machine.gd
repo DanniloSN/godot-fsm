@@ -13,6 +13,8 @@ onready var STATES = {
 var previousState
 var state
 
+var statesHistory = []
+
 func setState(newState):
 	# Just call _exit if has a previous state
 	if state != null:
@@ -23,7 +25,7 @@ func setState(newState):
 	state = STATES[newState]
 	state._enter(get_parent())
 
-	# Just for debug
+	# Debug purposes
 	var previousStateName = previousState.name if previousState != null else ""
 	var stateName = state.name
 	print(
