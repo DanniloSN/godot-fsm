@@ -23,29 +23,33 @@ shape = SubResource( 1 )
 
 [node name="Chars" type="Node2D" parent="."]
 
-[node name="Char" parent="Chars" instance=ExtResource( 1 )]
+[node name="CharFSM" parent="Chars" instance=ExtResource( 2 )]
 position = Vector2( 683, 200 )
 
-[node name="CharFSM" parent="Chars" instance=ExtResource( 2 )]
+[node name="Char" parent="Chars" instance=ExtResource( 1 )]
 position = Vector2( 683, 600 )
 
 [node name="Labels" type="Node2D" parent="."]
+position = Vector2( 1188.4, 0 )
 
-[node name="NotFSM" type="Label" parent="Labels"]
-margin_right = 40.0
+[node name="FSM" type="Label" parent="Labels"]
+margin_top = -3.05176e-05
+margin_right = 58.0
 margin_bottom = 14.0
 rect_scale = Vector2( 3, 3 )
-text = "NOT FSM"
+text = "FSM"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FSM" type="Label" parent="Labels"]
+[node name="NotFSM" type="Label" parent="Labels"]
 margin_top = 389.0
 margin_right = 58.0
 margin_bottom = 403.0
 rect_scale = Vector2( 3, 3 )
-text = "FSM"
+text = "NOT FSM"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

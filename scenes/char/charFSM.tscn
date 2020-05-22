@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/char/charFSM.gd" type="Script" id=1]
 [ext_resource path="res://scripts/char/states/walk.gd" type="Script" id=2]
@@ -8,12 +8,60 @@
 [ext_resource path="res://scripts/char/states/jump.gd" type="Script" id=6]
 [ext_resource path="res://scripts/char/states/run.gd" type="Script" id=7]
 [ext_resource path="res://sprites/Adventurer Sprite Sheet v1.1.png" type="Texture" id=8]
+[ext_resource path="res://scripts/char/states/attack.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "Fall"
+resource_name = "AttackCombo1"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ), Vector2( 6, 2 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "AttackCombo2"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 3 ), Vector2( 6, 3 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "AttackCombo3"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 4 ), Vector2( 7, 4 ) ]
+}
+
+[sub_resource type="Animation" id=5]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame_coords")
@@ -28,8 +76,7 @@ tracks/0/keys = {
 "values": [ Vector2( 3, 5 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Idle"
+[sub_resource type="Animation" id=6]
 length = 1.2
 loop = true
 tracks/0/type = "value"
@@ -45,8 +92,7 @@ tracks/0/keys = {
 "values": [ 0, 12 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Jump"
+[sub_resource type="Animation" id=7]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame_coords")
@@ -61,8 +107,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 5 ), Vector2( 2, 5 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Run"
+[sub_resource type="Animation" id=8]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -78,8 +123,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 1 ), Vector2( 7, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "Walk"
+[sub_resource type="Animation" id=9]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -110,26 +154,26 @@ cast_to = Vector2( 0, 17 )
 texture = ExtResource( 8 )
 vframes = 16
 hframes = 13
-frame = 68
+frame = 26
 region_rect = Rect2( 0, 0, 32, 32 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Fall = SubResource( 2 )
-anims/Idle = SubResource( 3 )
-anims/Jump = SubResource( 4 )
-anims/Run = SubResource( 5 )
-anims/Walk = SubResource( 6 )
+anims/AttackCombo1 = SubResource( 2 )
+anims/AttackCombo2 = SubResource( 3 )
+anims/AttackCombo3 = SubResource( 4 )
+anims/Fall = SubResource( 5 )
+anims/Idle = SubResource( 6 )
+anims/Jump = SubResource( 7 )
+anims/Run = SubResource( 8 )
+anims/Walk = SubResource( 9 )
 
-[node name="Debug" type="Label" parent="."]
-margin_left = -79.5
-margin_top = -29.6667
-margin_right = 79.5
-margin_bottom = -15.6667
-grow_horizontal = 2
-grow_vertical = 0
-text = "Velocity(123123,123123)"
-align = 1
-valign = 1
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Debug"]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_scale = Vector2( 3, 3 )
+text = "Velocity(X, Y)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -151,3 +195,6 @@ script = ExtResource( 6 )
 
 [node name="Fall" type="Node" parent="StatesMachine"]
 script = ExtResource( 4 )
+
+[node name="Attack" type="Node" parent="StatesMachine"]
+script = ExtResource( 9 )

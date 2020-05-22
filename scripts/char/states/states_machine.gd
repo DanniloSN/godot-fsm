@@ -7,6 +7,7 @@ onready var STATES = {
 	"Run" : $Run,
 	"Jump" : $Jump,
 	"Fall" : $Fall,
+	"Attack" : $Attack,
 }
 
 var previousState

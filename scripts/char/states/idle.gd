@@ -51,5 +51,9 @@ func _handle_input(event):
 	else:
 		character.direction.x = 0
 
+	# Set state to Attack
+	if Input.is_action_pressed("attack"):
+		sm.setState("Attack")
+
 func _exit():
 	pass
