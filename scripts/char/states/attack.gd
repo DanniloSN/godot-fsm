@@ -17,6 +17,7 @@ func _enter(parent):
 	character.direction = Vector2()
 	character.movement = Vector2()
 
+	# Connect to animation node and play animation
 	character.get_node("AnimationPlayer").connect("animation_finished", self, "finishAttackAnimation")
 	character.playAnimation("AttackCombo" + str(attackCombo))
 

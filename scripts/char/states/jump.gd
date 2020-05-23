@@ -5,7 +5,7 @@ onready var sm = get_parent()
 
 const JUMP_FORCE = 200
 const GRAVITY = 200
-const AIR_HORIZONTAL_VELOCITY = 200
+const AIR_HORIZONTAL_VELOCITY = 100
 
 var velocity = 0
 
@@ -18,7 +18,6 @@ func _enter(parent):
 
 	# Set the movement and direction
 	character.movement.y = -JUMP_FORCE
-	character.direction.y = -1
 
 func _update(delta):
 	# If touched the floor setState to Idle
@@ -41,6 +40,9 @@ func _handle_input(event):
 		character.direction.x = 1
 	else:
 		character.direction.x = 0
+
+	if Input.is_action_pressed("attack"):
+		sm.setState("AirAttack")
 
 func _exit():
 	velocity = 0
