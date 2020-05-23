@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/world.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 683, 10 )
+extents = Vector2( 683, 50 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
@@ -12,12 +12,9 @@ script = ExtResource( 3 )
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 683, 0 )
 
-[node name="Down" type="CollisionShape2D" parent="Floor"]
-position = Vector2( 0, 768 )
+[node name="Collision" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 0, 614.577 )
 shape = SubResource( 1 )
 
-[node name="Chars" type="Node2D" parent="."]
-position = Vector2( 0, 78 )
-
-[node name="CharFSM" parent="Chars" instance=ExtResource( 2 )]
-position = Vector2( 683, 508.231 )
+[node name="CharFSM" parent="." instance=ExtResource( 2 )]
+position = Vector2( 683, 469.071 )

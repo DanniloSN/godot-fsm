@@ -1,6 +1,10 @@
+# In this script we're going to manage
+# the states by adding the state's node
+# in the "STATES" map.
 extends Node
 
 # The character's states have to be specified here
+# as { "state-name" : state-node }
 onready var STATES = {
 	"Idle" : $Idle,
 	"Walk" : $Walk,
@@ -14,15 +18,14 @@ onready var STATES = {
 var previousState
 var state
 
-var statesHistory = []
-
 func setState(newState):
-	# Just call _exit if has a previous state
+	# Just call state's "_exit" if has a previous/active state
 	if state != null:
+		# Any last word?
 		state._exit()
 		previousState = state
 
-	# Set the new state and call _enter
+	# Set the new state and call his "_enter"
 	state = STATES[newState]
 	state._enter(get_parent())
 

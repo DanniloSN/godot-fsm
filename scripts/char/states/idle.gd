@@ -1,3 +1,5 @@
+# Basicly just stand still waiting for
+# some input or scenario change
 extends Node
 
 onready var character
