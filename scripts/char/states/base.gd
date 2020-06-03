@@ -7,11 +7,11 @@
 
 extends Node
 
-onready var character
+onready var character = get_owner()
 onready var sm = get_parent()
 
-func _enter(parent):
-	character = parent
+func _enter():
+	pass
 
 func _update(delta):
 	pass

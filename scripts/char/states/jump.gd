@@ -1,6 +1,6 @@
 extends Node
 
-onready var character
+onready var character = get_owner()
 onready var sm = get_parent()
 
 const JUMP_FORCE = 200
@@ -9,8 +9,7 @@ const AIR_HORIZONTAL_VELOCITY = 100
 
 var velocity = 0
 
-func _enter(parent):
-	character = parent
+func _enter():
 	character.playAnimation("Jump")
 
 	# Define jump horizontal velocity

@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/world.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 683, 50 )
+extents = Vector2( 500, 50 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )

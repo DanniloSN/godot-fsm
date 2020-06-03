@@ -14,7 +14,7 @@ var direction = Vector2()
 var movement = Vector2()
 
 func _ready():
-	sm.setState("Fall")
+	pass
 
 func _process(delta):
 	# Each state have his own process called

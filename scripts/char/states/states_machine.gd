@@ -1,33 +1,30 @@
-# In this script we're going to manage
-# the states by adding the state's node
-# in the "STATES" map.
 extends Node
 
-# The character's states have to be specified here
-# as { "state-name" : state-node }
-onready var STATES = {
-	"Idle" : $Idle,
-	"Walk" : $Walk,
-	"Run" : $Run,
-	"Jump" : $Jump,
-	"Fall" : $Fall,
-	"Attack" : $Attack,
-	"AirAttack" : $AirAttack
-}
+var STATES = {}
 
 var previousState
 var state
 
-func setState(newState):
-	# Just call state's "_exit" if has a previous/active state
-	if state != null:
-		# Any last word?
-		state._exit()
-		previousState = state
+func _ready():
+	addState("Idle", $Idle)
+	addState("Walk", $Walk)
+	addState("Run", $Run)
+	addState("Jump", $Jump)
+	addState("Fall", $Fall)
+	addState("Attack", $Attack)
+	addState("AirAttack", $AirAttack)
+	setState("Fall")
 
-	# Set the new state and call his "_enter"
+func addState(stateName, stateNode):
+	STATES[stateName] = stateNode
+
+func setState(newState):
+	if state != null:
+		previousState = state
+		state._exit()
+
 	state = STATES[newState]
-	state._enter(get_parent())
+	state._enter()
 
 	# Debug purposes
 	var previousStateName = previousState.name if previousState != null else ""

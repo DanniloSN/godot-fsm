@@ -1,6 +1,6 @@
 extends Node
 
-onready var character
+onready var character = get_owner()
 onready var sm = get_parent()
 
 const MAX_ATTACKS = 3
@@ -10,9 +10,7 @@ var continueAttack = false
 
 var runPressed = false
 
-func _enter(parent):
-	character = parent
-
+func _enter():
 	# Set the character movement and direction to 0
 	character.direction = Vector2()
 	character.movement = Vector2()
@@ -41,10 +39,7 @@ func _handle_input(event):
 
 	# If is pressing run
 	# setState to Run instead walk
-	if Input.is_action_pressed("run"):
-		runPressed = true
-	else:
-		runPressed = false
+	runPressed = Input.is_action_pressed("run")
 
 func finishAttackAnimation(attackAnimationFinished):
 	if continueAttack:

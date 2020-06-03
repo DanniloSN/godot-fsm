@@ -1,6 +1,6 @@
 extends Node
 
-onready var character
+onready var character = get_owner()
 onready var sm = get_parent()
 
 const GRAVITY = 200
@@ -10,9 +10,7 @@ var velocity = 0
 var runPressed = false
 var isAttacking = false
 
-func _enter(parent):
-	character = parent
-
+func _enter():
 	# Define fall horizontal velocity
 	velocity = character.movement.x if abs(character.movement.x) > AIR_HORIZONTAL_VELOCITY else AIR_HORIZONTAL_VELOCITY
 
@@ -44,10 +42,7 @@ func _update(delta):
 
 func _handle_input(event):
 	# Run instead walk
-	if Input.is_action_pressed("run"):
-		runPressed = true
-	else:
-		runPressed = false
+	runPressed = Input.is_action_pressed("run")
 
 	# Change direction
 	if Input.is_action_pressed("move_left"):

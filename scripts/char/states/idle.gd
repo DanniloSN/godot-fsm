@@ -2,13 +2,12 @@
 # some input or scenario change
 extends Node
 
-onready var character
+onready var character = get_owner()
 onready var sm = get_parent()
 
 var runPressed = false
 
-func _enter(parent):
-	character = parent
+func _enter():
 	character.playAnimation("Idle")
 
 	# Set movement variables to zero
@@ -35,10 +34,7 @@ func _handle_input(event):
 	# While pressing run, runPressed will be
 	# true, that will decide if is going to
 	# run or walk
-	if Input.is_action_pressed("run"):
-		runPressed = true
-	else:
-		runPressed = false
+	runPressed = Input.is_action_pressed("run")
 
 	# Set state to Jump
 	if Input.is_action_pressed("jump"):

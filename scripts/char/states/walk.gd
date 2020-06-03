@@ -1,6 +1,6 @@
 extends Node
 
-onready var character
+onready var character = get_owner()
 onready var sm = get_parent()
 
 const WALK_VELOCITY = 200
@@ -8,8 +8,7 @@ const WALK_ACCELERATION = 15
 
 var velocity = Vector2()
 
-func _enter(parent):
-	character = parent
+func _enter():
 	character.playAnimation("Walk")
 
 func _update(delta):
